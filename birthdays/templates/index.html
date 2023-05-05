@@ -1,0 +1,44 @@
+{% extends 'layout.html' %}
+{%block content%}
+<div class="container">
+    <div class="section">
+
+        <h2>Add a Birthday</h2>
+        <form action="" method="post">
+            <!-- <input type="text" autocomplete="off" name="name" placeholder="Name">
+                <input type="number" autocomplete="off" name="month" placeholder="Month">
+                <input type="number" autocomplete="off" name="day" placeholder="Day">
+                <input type="submit" value="Add Birthday"> -->
+            {{form.hidden_tag()}}
+            {{form.name(class="field")}}
+            {{form.day(class="field")}}
+            {{form.month(class="field")}}
+            {{form.submit(class="submit-btn")}}
+        </form>
+    </div>
+
+    <div class="section">
+
+        <h2>All Birthdays</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Birthday</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for birthday in birthdays %}
+                <tr>
+                    <td>{{birthday.name}}</td>
+                    <td>{{birthday.day}}/{{birthday.month}}</td>
+                    <form action="{{ url_for('delete_birthday', birthday_id=birthday.id) }}" method="post">
+                        <td><button name="delete-{{birthday.id}}" class="btn btn-primary mb-3">Delete</button></td>
+                    </form>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{%endblock%}

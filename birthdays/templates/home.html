@@ -1,0 +1,23 @@
+{%extends 'layout.html'%}
+{%block content%}
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+      <h1 class="display-4">Welcome to My Birthday Tracker App</h1>
+      <p class="lead">Are you tired of forgetting important birthdays, like your best friend's or your grandmother's? Do you struggle to keep track of all the special dates in your life?
+
+        Our webapp is here to help! With our easy-to-use interface, you can store all of your important birthdays in one convenient place. No more sticky notes or missed celebrations!
+        
+        Simply create an account, add your loved ones' names and birthdays, and let us take care of the rest.
+        
+        Plus, our webapp is completely secure and private. Your data is encrypted and stored safely on our servers, so you can trust that your information is always protected.
+        
+        So what are you waiting for? Sign up today and start organizing your birthdays like a pro!</p>
+      <hr class="my-4">
+      {% if not current_user.is_authenticated %}
+      <p>Get started today by creating an account.</p>
+      <a class="btn btn-primary btn-lg" href="{{url_for('register')}}" role="button">Create Account</a>
+      <a class="btn btn-primary btn-lg" href="{{url_for('login')}}" role="button">Log In</a>
+      {%endif%}
+    </div>
+  </div>
+{% endblock %}
